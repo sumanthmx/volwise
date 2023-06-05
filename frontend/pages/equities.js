@@ -1,10 +1,13 @@
 import React from 'react';
-import VolTable from '../components/Table';
+import VolTable from '../components/table';
+import Navbar from "../components/navbar/navbar";
+import styles from '../app/page.module.css';
 
 const MyPage = () => {
   return (
     <div>
-      <h1>Equity Volatilities</h1>
+      <Navbar />
+      <h1 className={styles.pagetitle}>Equity Volatilities</h1>
       <VolTable/>
     </div>
   );

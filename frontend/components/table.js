@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import { Table } from "@nextui-org/react";
 import useSWR from 'swr';
@@ -18,6 +19,10 @@ export default function() {
       css={{
         height: "auto",
         minWidth: "100%",
+        fontFamily: "Helvetica",
+        fontSize: "16px",
+        maxWidth: "20px",
+        overflow: "auto"
       }}
     >
       <Table.Header>

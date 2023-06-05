@@ -1,0 +1,30 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  background-color: #FF0000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.navbar ul {
+  display: flex;
+  list-style-type: none;
+  gap: 20px;
+}
+
+.navtext a {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+  padding-left: 4px;
+  padding-top: 10px;
+  color: aliceblue;
+}
+
+.navtext:-webkit-any-link {
+  color:red !important
+}
