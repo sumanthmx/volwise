@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from '../app/page.module.css'
 import Navbar from '../components/navbar/navbar';
-import VolTable from "@/components/table";
+import VolTable from "../components/temptable/table";
 
+// change temptable to table
 export default function Home() {
   return (
     <div>

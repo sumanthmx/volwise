@@ -1,0 +1,11 @@
+.button {
+  background-color: transparent;
+  border: none;
+  color: black;
+  max-width: 4em;
+}
+
+.colname {
+  font-family: Helvetica;
+  font-size: 20px;
+}

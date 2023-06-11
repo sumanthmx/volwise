@@ -2,25 +2,17 @@
 import React, {useState} from 'react';
 import { Table } from "@nextui-org/react";
 import useSWR from 'swr';
-import styles from './spreadtable.module.css';
+import styles from './table.module.css';
 import Modal from '../../components/modal/modal';
 
-/* Notes:
-    rlzd: realized
-    the pop-up page should have a plot for the actual data
-    add hover and shade when clicked on
-    have SPX-GOOG-1m as title (e.g.)
-    have volatility
- */
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function() {
 
-  const { data, error, isLoading } = useSWR('/report/data', fetcher);
+  const { data, error, isLoading } = useSWR('/report/equity_vol_data', fetcher);
   const [isModalOpen, setModalOpen] = useState(false);
   const [modalValue, setModalValue] = useState(0);
-  const [instOne, setInstOne] = useState('');
-  const [instTwo, setInstTwo] = useState('');
+  const [instr, setInst] = useState('');
   const [expDate, setExpiry] = useState('');
 
   const openModal = () => {
@@ -31,10 +23,9 @@ export default function() {
     setModalOpen(false);
   };
 
-  const setScreenVals = (value, inst1, inst2, expiry) => {
+  const setScreenVals = (value, inst, expiry) => {
       setModalValue(value);
-      setInstOne(inst1);
-      setInstTwo(inst2);
+      setInst(inst);
       setExpiry(expiry);
   };
 
@@ -42,10 +33,10 @@ export default function() {
   if (error) return <div>failed to load</div>
   if (isLoading) return <div>loading...</div>
 
-  const handleCellClick = (value, colId, inst1, inst2, expiry) => {
-      if (colId >= 2) {
+  const handleCellClick = (value, colId, inst, expiry) => {
+      if (colId >= 1) {
           setModalOpen(true);
-          setScreenVals(value, inst1, inst2, expiry);
+          setScreenVals(value, inst, expiry);
       }
   };
 
@@ -71,7 +62,7 @@ export default function() {
                   key={columnIndex.toString()}
               ><button className = {styles.button}
                        onClick={() => handleCellClick(value, columnIndex,
-                           Object.values(row)[0], Object.values(row)[1],
+                           Object.values(row)[0],
                            Object.keys(row)[columnIndex])}>{value}</button>
               </Table.Cell>))}
             </Table.Row>
@@ -81,8 +72,7 @@ export default function() {
     </Table>
     <Modal isOpen={isModalOpen} onClose={closeModal}>
       <h1>Singular Volatility Screen</h1>
-        <p>Inst1: {instOne}</p>
-        <p>Inst2: {instTwo}</p>
+        <p>Inst: {instr}</p>
         <p>Time until Expiry: {expDate}</p>
         <p>Volatility: {modalValue}</p>
     </Modal>
