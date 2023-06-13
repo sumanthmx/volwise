@@ -2,6 +2,16 @@
   background-color: transparent;
   border: none;
   color: black;
+  max-width: 4em;
+}
+
+.viewbutton {
+  background-color: floralwhite;
+  color: black;
+  max-width: 6em;
+  right: 20px;
+  top: 120px;
+  position: absolute;
 }
 
 .colname {
